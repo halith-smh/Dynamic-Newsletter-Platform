@@ -17,7 +17,7 @@ function Index() {
 
   const verifyToken = async (token) => {
     try {
-      const result = await axios.get("http://localhost:4000/api/auth/login", {
+      const result = await axios.get("auth/login", {
         headers: {
           "x-access-token": token,
         },

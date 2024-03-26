@@ -24,7 +24,7 @@ function PostApprove() {
   const verifyToken = async (token) => {
     try {
       const result = await axios.get(
-        "http://localhost:4000/api/admin/dashboard"
+        "admin/dashboard"
       );
       if (result.status === 200) {
         console.log(result);
@@ -133,7 +133,7 @@ function PostApprove() {
 
     try {
       const response = await axios.patch(
-        "http://localhost:4000/api/admin/publish",
+        "admin/publish",
         data
       );
       console.log(response);

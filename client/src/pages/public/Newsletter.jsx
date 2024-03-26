@@ -25,7 +25,7 @@ function Newsletter() {
   const serverRequest = async () => {
     try {
       const respone = await axios.get(
-        "http://localhost:4000/api/newsletter/" + date
+        "newsletter/" + date
       );
       if (respone.status === 200) {
         setIsAuth(true);

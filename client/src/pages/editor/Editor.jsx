@@ -20,7 +20,7 @@ function Editor() {
 
   const verifyToken = async (token) => {
     try {
-      const result = await axios.get("http://localhost:4000/api/auth/login", {
+      const result = await axios.get("auth/login", {
         headers: {
           "x-access-token": token,
         },
@@ -123,7 +123,7 @@ function Editor() {
   const handleEventsSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/posts/add",
+        "posts/add",
         { events: events }, // Pass updated formData directly here
         { headers: { "Content-Type": "multipart/form-data" } }
       );

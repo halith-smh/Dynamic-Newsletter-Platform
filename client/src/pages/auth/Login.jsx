@@ -27,7 +27,7 @@ function Login() {
     const tLoader = toast.loading('Authenticating');
 
     try {
-      const result = await axios.post('http://localhost:4000/api/auth/login', {email, password});
+      const result = await axios.post('auth/login', {email, password});
       console.log(result.data);
       toast.dismiss(tLoader);
       toast.success('Login Successful');

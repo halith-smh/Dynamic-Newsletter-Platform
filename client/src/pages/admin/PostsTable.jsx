@@ -23,7 +23,7 @@ function PostsTable({ token, formatDate }) {
   const dataFetch = async () => {
     try {
       const resData = await axios.get(
-        "http://localhost:4000/api/admin/table-posts"
+        "admin/table-posts"
       );
       setData(resData.data);
       console.log(resData.data);

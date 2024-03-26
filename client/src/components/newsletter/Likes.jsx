@@ -15,7 +15,7 @@ function Likes({ data, email, mainId }) {
     const checkLiked = async () => {
       try {
         const respone = await axios.get(
-          `http://localhost:4000/api/newsletter/check-like/${data._id}?email=${email}&mainId=${mainId}`
+          `newsletter/check-like/${data._id}?email=${email}&mainId=${mainId}`
         );
         console.log(respone);
         setIsLiked(respone.data.liked);
@@ -35,7 +35,7 @@ function Likes({ data, email, mainId }) {
 
       // Make API call in background
       await axios.patch(
-        `http://localhost:4000/api/newsletter/like/${data._id}`,
+        `newsletter/like/${data._id}`,
         { email, liked: !isLiked, mainId }
       );
     } catch (error) {

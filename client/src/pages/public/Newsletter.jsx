@@ -8,6 +8,7 @@ import { toast } from "wc-toast";
 import Navbar from "../../components/home/Navbar";
 import Breadcrumb from "../../components/newsletter/Breadcrumb";
 import SinglePost from "../../components/newsletter/SinglePost";
+import EditorsPreview from "../../components/newsletter/EditorsPreview";
 
 function Newsletter() {
   const nav = useNavigate();
@@ -24,9 +25,7 @@ function Newsletter() {
 
   const serverRequest = async () => {
     try {
-      const respone = await axios.get(
-        "newsletter/" + date
-      );
+      const respone = await axios.get("newsletter/" + date);
       if (respone.status === 200) {
         setIsAuth(true);
         setData(respone.data.data[0]);
@@ -93,24 +92,35 @@ function Newsletter() {
             <Navbar role={role} email={email} Logout={Logout} active="active" />
           </div>
           <div className="newsletter">
-           <div className="col-12">
-           <div className="title-cc container-fluid">
-              <Breadcrumb date={data.date} />
-            </div>
-            <div className="conatiner mt-4">
-              <div className="px-lg-5">
-                {data.events.map((ele) => (
-                  <SinglePost key={ele._id} mainId={data._id} data={ele} email={email} />
-                ))}
+            <div className="col-12">
+              <div className="title-cc container-fluid">
+                <Breadcrumb date={data.date} />
+              </div>
+              <div className="conatiner d-flex mt-4">
+                <div className="px-lg-5 col-8">
+                  {data.events.map((ele) => (
+                    <SinglePost
+                      key={ele._id}
+                      mainId={data._id}
+                      data={ele}
+                      email={email}
+                    />
+                  ))}
+                </div>
+                <EditorsPreview/>
               </div>
             </div>
-           </div>
           </div>
         </>
       )}
       {notFound && (
         <>
-          <h1 style={{height: '100vh'}} className="d-flex justify-content-center align-items-center">404 Not Found</h1>
+          <h1
+            style={{ height: "100vh" }}
+            className="d-flex justify-content-center align-items-center"
+          >
+            404 Not Found
+          </h1>
         </>
       )}
     </>

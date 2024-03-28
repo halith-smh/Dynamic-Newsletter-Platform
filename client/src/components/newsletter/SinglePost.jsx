@@ -5,7 +5,7 @@ import "./Style.css";
 
 function SinglePost({ data, email, mainId }) {
   return (
-    <div className="col-xl-5 col-lg-4 col-md-4 mt-2 mb-5" id={data._id}>
+    <div className="col-8 mt-2 mb-5" id={data._id}>
       <div className="mainDiv">
 
         <div className="depts my-1">

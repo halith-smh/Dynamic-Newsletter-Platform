@@ -32,7 +32,14 @@ const login = async (req, res) => {
           expiresIn: "1d",
         });
 
-        res.status(200).cookie("token", token).send("Login Successful");
+        if (req.secure) {
+          // Set Secure attribute only for HTTPS requests
+          res.cookie("token", token, { secure: true }).send("Login Successful");
+        } else {
+          res.cookie("token", token).send("Login Successful");
+        }
+
+        // res.status(200).cookie("token", token);
       } else {
         res.status(500).send("The Password is incorrect");
       }

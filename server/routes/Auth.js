@@ -11,7 +11,7 @@ router.post('/register', register);
 router.post('/login',login);
 
 //auth-login-verify
-router.get('/login', verifyUser,loginVerify);
+router.get('/login', verifyUser, loginVerify);
 
 
 module.exports = router;

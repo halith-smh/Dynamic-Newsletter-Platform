@@ -12,8 +12,8 @@ const AdminRouter = require("./routes/Admin");
 const PublicRouter = require("./routes/Public");
 
 const { verifyAdmin } = require("./middleware/Admin");
-
 const { verifyUser } = require("./middleware/User");
+const { verifyEditor } = require("./middleware/Editor");
 
 const path = require("path");
 const app = express();
@@ -33,11 +33,6 @@ app.use((req, res, next) => {
   next();
 });
 
-//deploy preview - test
-app.get("/", (req, res) => {
-  res.send("<h1>IGNITE - 2k24</h1>");
-});
-
 // Public Img access directory
 const uploadsDirectory = path.join(__dirname, "uploads");
 app.get("/uploads/:date/:filename", (req, res) => {
@@ -50,7 +45,7 @@ app.get("/uploads/:date/:filename", (req, res) => {
 app.use("/api/auth", AuthRouter);
 
 //post
-app.use("/api/posts", PostRouter);
+app.use("/api/posts", verifyEditor, PostRouter);
 
 //admin
 app.use("/api/admin/", verifyAdmin, AdminRouter);

@@ -51,7 +51,7 @@ function Breadcrumb({ date }) {
 }
 
   return (
-    <div className="col-7 d-flex justify-content-between">
+    <div className="col-8 d-flex justify-content-between">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -69,7 +69,7 @@ function Breadcrumb({ date }) {
           {new Date(date).toLocaleDateString("en-US", { weekday: "long" })}
         </div>
         <div className="mt-3" style={{fontSize: 16, fontWeight: 500}} id="time">
-        <i class="bi bi-clock-history" style={{color: '#6d23e4', fontWeight: 800}}></i> {timeAgo(date)}
+        <i className="bi bi-clock-history" style={{color: '#6d23e4', fontWeight: 800}}></i> {timeAgo(date)}
         </div>
       </div>
     </div>

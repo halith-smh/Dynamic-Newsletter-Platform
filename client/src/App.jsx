@@ -9,7 +9,11 @@ import Login from "./pages/auth/Login";
 import Index from "./pages/home/Index";
 import Editor from "./pages/editor/Editor";
 import PostApprove from "./pages/admin/PostApprove";
+
 import Newsletter from "./pages/public/Newsletter";
+import Editors from "./pages/public/Editors";
+import TopReaders from "./pages/public/TopReaders";
+import Profile from "./pages/public/Profile";
 
 function App() {
   return (
@@ -27,6 +31,12 @@ function App() {
 
         {/* public routes - common routes  */}
         <Route path="/newsletter/:date" element={<Newsletter />} />
+        <Route path="/editors" element={<Editors />} />
+        <Route path="/top-readers" element={<TopReaders />} />
+        <Route path="/profile" element={<Profile />} />
+
+
+
       </Routes>
     </BrowserRouter>
   );

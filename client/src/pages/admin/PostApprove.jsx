@@ -8,6 +8,7 @@ import { toast } from "wc-toast";
 import Navbar from "../../components/home/Navbar";
 import PreviewPost from "../../components/admin/PreviewPost";
 import PostsTable from "./PostsTable";
+import Preview from "../editor/Preview";
 
 function PostApprove() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,9 +24,7 @@ function PostApprove() {
 
   const verifyToken = async (token) => {
     try {
-      const result = await axios.get(
-        "admin/dashboard"
-      );
+      const result = await axios.get("admin/dashboard");
       if (result.status === 200) {
         console.log(result);
 
@@ -132,10 +131,7 @@ function PostApprove() {
     console.log(data);
 
     try {
-      const response = await axios.patch(
-        "admin/publish",
-        data
-      );
+      const response = await axios.patch("admin/publish", data);
       console.log(response);
       setEvents({});
       verifyToken();
@@ -190,7 +186,6 @@ function PostApprove() {
                       name="image"
                       value="/thumbnail/img1.png"
                       onChange={handleImageChange}
-                      checked
                     />
                     <label htmlFor="img1">
                       <img src="/thumbnail/img1.png" width={80} alt="" />
@@ -200,44 +195,44 @@ function PostApprove() {
                       type="radio"
                       id="img2"
                       name="image"
-                      value="/thumbnail/img1.png"
+                      value="/thumbnail/img2.png"
                       onChange={handleImageChange}
                     />
                     <label htmlFor="img2">
-                      <img src="/thumbnail/img1.png" width={80} alt="" />
+                      <img src="/thumbnail/img2.png" width={80} alt="" />
                     </label>
 
                     <input
                       type="radio"
                       id="img3"
                       name="image"
-                      value="/thumbnail/img1.png"
+                      value="/thumbnail/img3.png"
                       onChange={handleImageChange}
                     />
                     <label htmlFor="img3">
-                      <img src="/thumbnail/img1.png" width={80} alt="" />
+                      <img src="/thumbnail/img3.png" width={80} alt="" />
                     </label>
 
                     <input
                       type="radio"
                       id="img4"
                       name="image"
-                      value="/thumbnail/img1.png"
+                      value="/thumbnail/img4.png"
                       onChange={handleImageChange}
                     />
                     <label htmlFor="img4">
-                      <img src="/thumbnail/img1.png" width={80} alt="" />
+                      <img src="/thumbnail/img4.png" width={80} alt="" />
                     </label>
 
                     <input
                       type="radio"
                       id="img5"
                       name="image"
-                      value="/thumbnail/img1.png"
+                      value="/thumbnail/img2.png"
                       onChange={handleImageChange}
                     />
                     <label htmlFor="img5">
-                      <img src="/thumbnail/img1.png" width={80} alt="" />
+                      <img src="/thumbnail/img2.png" width={80} alt="" />
                     </label>
                     <hr />
                     {selectedImage && (
@@ -276,15 +271,18 @@ function PostApprove() {
                 <div className="info">
                   <h3> Dashboard</h3>
                 </div>
-                <div className="bttn">
-                  <div
-                    className="btn btn-light"
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
-                  >
-                    Approve Newsletter
+                {/* Check for condition btn */}
+                {postData && (
+                  <div className="bttn">
+                    <div
+                      className="btn btn-light"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                    >
+                      Approve Newsletter
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
             <div className="conatiner px-2 box-info">
@@ -294,11 +292,11 @@ function PostApprove() {
                     <div className="d-flex justify-content-between">
                       <h6 className="card-title">No. of Letters</h6>
                       <div className="icon">
-                        <i className="bi bi-newspaper"></i>
+                        <i className="bi bi-newspaper text-success"></i>
                       </div>
                     </div>
-                    <h1>{counts.p_count.toString().padStart(2, "0")}</h1>
-                    <h6>Published</h6>
+                    <h1 className="text-success">{counts.p_count.toString().padStart(2, "0")}</h1>
+                    <h6 className="text-success" >Published</h6>
                   </div>
                 </div>
 
@@ -307,11 +305,11 @@ function PostApprove() {
                     <div className="d-flex justify-content-between">
                       <h6 className="card-title">No. of Letters</h6>
                       <div className="icon">
-                        <i className="bi bi-newspaper"></i>
+                        <i className="bi bi-hourglass-split text-warning"></i>
                       </div>
                     </div>
-                    <h1>{counts.pen_count.toString().padStart(2, "0")}</h1>
-                    <h6>Pending</h6>
+                    <h1 className="text-warning">{counts.pen_count.toString().padStart(2, "0")}</h1>
+                    <h6 >Pending</h6>
                   </div>
                 </div>
 
@@ -320,11 +318,11 @@ function PostApprove() {
                     <div className="d-flex justify-content-between">
                       <h6 className="card-title">No. of Students</h6>
                       <div className="icon">
-                        <i className="bi bi-newspaper"></i>
+                        <i className="bi bi-person-bounding-box text-primary"></i>
                       </div>
                     </div>
-                    <h1>{counts.s_count.toString().padStart(2, "0")}</h1>
-                    <h6>All Dept</h6>
+                    <h1 className="text-primary">{counts.s_count.toString().padStart(2, "0")}</h1>
+                    <h6>(All Dept)</h6>
                   </div>
                 </div>
 
@@ -333,19 +331,36 @@ function PostApprove() {
                     <div className="d-flex justify-content-between">
                       <h6 className="card-title">No. of Editors</h6>
                       <div className="icon">
-                        <i className="bi bi-newspaper"></i>
+                        <i className="bi bi-person-fill-gear text-primary"></i>
                       </div>
                     </div>
-                    <h1>{counts.e_count.toString().padStart(2, "0")}</h1>
-                    <h6>All Dept</h6>
+                    <h1 className="text-primary">{counts.e_count.toString().padStart(2, "0")}</h1>
+                    <h6>(All Dept)</h6>
                   </div>
                 </div>
               </div>
             </div>
 
-            {events &&
-              events.length > 0 &&
-              events.map((ele) => <PreviewPost key={ele._id} data={ele} />)}
+            <hr />
+            <h3 className="py-3 px-4" style={{ fontWeight: 600 }}>
+              Published Letters
+            </h3>
+
+            <div
+              className="container-fluid mt-4"
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fill, minmax(calc(50% - 10px), 1fr))",
+                gap: "10px",
+              }}
+            >
+              {events &&
+                events.length > 0 &&
+                events.map((event) => (
+                  <PreviewPost key={event._id} event={event} />
+                ))}
+            </div>
 
             {counts.pen_count === 0 && (
               <PostsTable token={token} formatDate={formatDate} />

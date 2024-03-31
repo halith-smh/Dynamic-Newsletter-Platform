@@ -7,6 +7,7 @@ import { toast } from "wc-toast";
 
 import Hero from "../../components/home/Hero";
 import Navbar from "../../components/home/Navbar";
+import NewsletterPreview from "../../components/home/NewsletterPreview";
 
 function Index() {
   const nav = useNavigate();
@@ -14,6 +15,8 @@ function Index() {
   const [isAuth, setIsAuth] = useState(false);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+
+  const [posts, setPosts] = useState({});
 
   const verifyToken = async (token) => {
     try {
@@ -24,6 +27,10 @@ function Index() {
       });
       if (result.status === 200) {
         console.log(result);
+        if (result.data.posts) {
+          setPosts(result.data.posts);
+          console.log(posts);
+        }
         setIsAuth(true);
       } else {
         nav("/sign-in");
@@ -86,9 +93,25 @@ function Index() {
     <>
       {isAuth && (
         <div className="HomePg">
-          <Navbar role={role} email={email} Logout={Logout} homeActive="active" />
+          <Navbar
+            role={role}
+            email={email}
+            Logout={Logout}
+            homeActive="active"
+          />
           <div className="main">
             <Hero />
+          </div>
+          <div className="container homeNews">
+            <h3 style={{ fontWeight: 600 }} className="mb-5">
+              {" "}
+              Previous Newsletters
+            </h3>
+            <div className="row">
+              {posts.map((element, index) => (
+                <NewsletterPreview key={element._id} element={element} />
+              ))}
+            </div>
           </div>
         </div>
       )}

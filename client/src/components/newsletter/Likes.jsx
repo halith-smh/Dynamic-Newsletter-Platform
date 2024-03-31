@@ -1,10 +1,13 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
+import { toast } from "wc-toast";
 
 
 
-function Likes({ data, email, mainId }) {
+function Likes({ data, email, mainId, date }) {
+  const id = data._id;
+
   const token = Cookies.get("token");
   axios.defaults.headers["x-access-token"] = token;
 
@@ -46,7 +49,7 @@ function Likes({ data, email, mainId }) {
 
   return (
     <div id="likes">
-      <i class="bi bi-share-fill" style={{color: 'blue'}}></i>
+      <i type="button" onClick={() => {navigator.clipboard.writeText(`http://localhost:5173/newsletter/${date}#${id}`);toast.success('Copied to Clipboard')}} className="bi bi-share-fill" style={{color: 'blue'}}></i>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <i
         type="button"

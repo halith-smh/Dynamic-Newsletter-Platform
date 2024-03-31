@@ -37,8 +37,8 @@ function PostsTable({ token, formatDate }) {
   }, []);
 
   return (
-    <div>
-      <table className="table">
+    <div className="col-11 m-auto">
+      <table className="table table-hover" >
         <thead>
           <tr>
             <th scope="col">#</th>

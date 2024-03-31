@@ -1,6 +1,8 @@
 const PostModel = require("../models/Post");
 const UserModel = require("../models/User");
 
+const jwt = require("jsonwebtoken");
+
 const getNewsletter = async (req, res) => {
   const dateStr = req.params.id; // Assuming the URL parameter is in the format "24-03-2024"
   const desiredTime = "00:00:00"; // Replace with your desired time
@@ -63,20 +65,19 @@ const checkIfUserLiked = async (req, res) => {
     // Find the post
     const post = await PostModel.findById(mainId);
     if (!post) {
-      return res.status(404).json({ success: false, message: "Post not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Post not found" });
     }
 
-   const eventIndex = post.events.findIndex(
+    const eventIndex = post.events.findIndex(
       (event) => event._id.toString() === postId
     );
 
     let count = 0;
-    if(eventIndex !== -1){
-      count = post.events[eventIndex].likes
+    if (eventIndex !== -1) {
+      count = post.events[eventIndex].likes;
     }
-
-
-    
 
     const likedIndex = user.liked.indexOf(postId);
     if (likedIndex === -1) {
@@ -115,6 +116,7 @@ const handlePostLike = async (req, res) => {
       if (liked) {
         post.events[eventIndex].likes++;
         user.liked.push(postId);
+        user.score = user.score + 20;
       } else {
         // Decrement logic for unlike:
         if (post.events[eventIndex].likes > 0) {
@@ -125,6 +127,7 @@ const handlePostLike = async (req, res) => {
         const index = user.liked.indexOf(postId);
         if (index !== -1) {
           user.liked.splice(index, 1);
+          user.score = user.score - 20;
         }
       }
 
@@ -133,14 +136,12 @@ const handlePostLike = async (req, res) => {
       await user.save();
 
       // Optionally, you can return more detailed information in the response
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "Like status updated successfully",
-          post,
-          user,
-        });
+      return res.status(200).json({
+        success: true,
+        message: "Like status updated successfully",
+        post,
+        user,
+      });
     } else {
       return res
         .status(404)
@@ -154,4 +155,70 @@ const handlePostLike = async (req, res) => {
   }
 };
 
-module.exports = { getNewsletter, checkIfUserLiked, handlePostLike };
+const profile = async (req, res) => {
+  const token = req.headers["x-access-token"];
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken.id;
+
+  try {
+    const user = await UserModel.findOne({ _id: userId }).select(
+      "-password -updatedAt -__v"
+    );
+    if (user) {
+      res.status(200).send({ user });
+    } else {
+      res.status(404).send({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).send({ error: "Internal server error" });
+  }
+};
+
+const updateProfile = async (req, res) => {
+  const token = req.headers["x-access-token"];
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken.id;
+
+  const { department } = req.body;
+  console.log(userId, department);
+  try {
+    const user = await UserModel.findOneAndUpdate(
+      { _id: userId },
+      { department },
+      { new: true }
+    );
+    if (user) {
+      res.status(200).send({ user });
+    } else {
+      res.status(404).send({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error updating department:", error);
+    res.status(500).send({ error: "Internal server error" });
+  }
+};
+
+const getReaders = async (req, res) => {
+  try {
+    const readers = await UserModel.find({ role: "student" }, "name score")
+      .sort({
+        score: -1,
+        updatedAt: 1
+      })
+      .limit(10);
+    res.status(200).send({ readers });
+  } catch (error) {
+    console.error("Error retrieving top readers:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+module.exports = {
+  getNewsletter,
+  checkIfUserLiked,
+  handlePostLike,
+  profile,
+  updateProfile,
+  getReaders,
+};

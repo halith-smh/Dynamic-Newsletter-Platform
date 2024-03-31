@@ -1,5 +1,9 @@
 const Post = require("../models/Post");
 
+const verifyUpload = async (req, res) => {
+  res.status(200).send('Permission Grantend')
+}
+
 const addPost = async (req, res) => {
   try {
     const today = new Date();
@@ -61,4 +65,4 @@ const addPost = async (req, res) => {
   }
 };
 
-module.exports = { addPost };
+module.exports = { addPost, verifyUpload };

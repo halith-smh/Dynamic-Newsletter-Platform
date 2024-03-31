@@ -3,8 +3,9 @@ import Verified from "./Verified";
 import { Link } from "react-router-dom";
 
 import userImg from "../../assets/imgs/home/user.png";
+import EditorVerified from "./EditorVerified";
 
-function Navbar({ role, email, Logout, homeActive }) {
+function Navbar({ role, email, Logout, homeActive, ediorActive, profileActive, readersActive }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
       <div className="container-fluid mx-5">
@@ -25,18 +26,19 @@ function Navbar({ role, email, Logout, homeActive }) {
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav mx-auto">
             <li className={`nav-item ${homeActive ? homeActive : ""}`}>
-              <Link to="/" className="nav-link">Home</Link>
-              
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
+            <li className={`nav-item ${ediorActive ? ediorActive : ""}`}>
+              <Link to="/editors" className="nav-link">
                 Editors
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
+            <li className={`nav-item ${readersActive ? readersActive : ""}`}>
+              <Link to="/top-readers" className="nav-link">
                 Top Readers
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -56,12 +58,21 @@ function Navbar({ role, email, Logout, homeActive }) {
                 alt=""
               />
               {email}
-              {role === "admin" && <Verified />}
+              {role === "admin" ? (
+                <Verified />
+              ) : role === "editor" ? (
+                <EditorVerified />
+              ) : (
+                ""
+              )}
             </div>
-            <ul className="dropdown-menu dropdown-menu-end">
+            <ul className="dropdown-menu nav-downs dropdown-menu-end">
               <li>
-                <button className="dropdown-item" type="button">
-                  Profile
+                <button className={`dropdown-item ${profileActive ? profileActive : ""}`} type="button">
+                <Link className="ref"  to="/profile">
+                     
+                     Profile
+                    </Link>
                 </button>
               </li>
               {role === "editor" && (

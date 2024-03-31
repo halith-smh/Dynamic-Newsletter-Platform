@@ -20,7 +20,7 @@ function Editor() {
 
   const verifyToken = async (token) => {
     try {
-      const result = await axios.get("auth/login", {
+      const result = await axios.get("/posts/dashboard", {
         headers: {
           "x-access-token": token,
         },
@@ -29,7 +29,7 @@ function Editor() {
         console.log(result);
         setIsAuth(true);
       } else {
-        nav("/sign-in");
+        nav("/");
         console.error(result);
       }
     } catch (err) {
@@ -128,9 +128,11 @@ function Editor() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log(response);
+      toast.success('Posts submitted for Review')
       setEvents([]);
     } catch (error) {
       console.log(error);
+      toast.error('An error oocured :(');
       // console.error("Error:", error.response.data);
     }
   };
@@ -201,7 +203,7 @@ function Editor() {
                     </span>
                   </div>
 
-                  <div className="bttn">
+                    {events.length > 0 && (<div className="bttn">
                     <div
                       className="btn btn-light"
                       onClick={handleEventsSubmit}
@@ -210,7 +212,9 @@ function Editor() {
                       <i className="bi bi-folder-symlink"></i> &nbsp; Submit For
                       Review
                     </div>
-                  </div>
+                  </div>)}
+                  
+
                 </div>
               </div>
 
@@ -220,7 +224,7 @@ function Editor() {
                   <h5 className="m-auto today text-center pt-3">
                     Today's Content
                   </h5>
-                  <h6 className="label-clr">{dept}</h6>
+                  <h6 className="label-clr m-auto mt-2 text-center"><i className="bi bi-mortarboard"></i>  {dept}</h6>
                   <form onSubmit={hangleFormSubmit} className="mb-4 mt-3">
                     <div className="form-group">
                       <label>Title</label>

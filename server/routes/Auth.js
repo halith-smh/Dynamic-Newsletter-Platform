@@ -1,5 +1,6 @@
 const express = require('express');
 const { register, login, loginVerify } = require('../controllers/Authentication');
+const { verifyUser } = require('../middleware/User');
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.post('/register', register);
 router.post('/login',login);
 
 //auth-login-verify
-router.get('/login', loginVerify);
+router.get('/login', verifyUser,loginVerify);
 
 
 module.exports = router;

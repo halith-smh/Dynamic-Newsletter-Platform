@@ -9,6 +9,7 @@ import Navbar from "../../components/home/Navbar";
 import Breadcrumb from "../../components/newsletter/Breadcrumb";
 import SinglePost from "../../components/newsletter/SinglePost";
 import EditorsPreview from "../../components/newsletter/EditorsPreview";
+import ErrorPage from "./ErrorPage";
 
 function Newsletter() {
   const nav = useNavigate();
@@ -32,7 +33,8 @@ function Newsletter() {
       }
     } catch (error) {
       setNotFound(true);
-      console.log(respone);
+      console.log(error);
+      // console.log(respone);
     }
   };
 
@@ -81,6 +83,21 @@ function Newsletter() {
     toast.success("Logout Successful");
   };
 
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      console.log(id);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        console.log(element);
+        if (element) {
+          element.scrollIntoView();
+        }
+      }, 1000); // Delay execution by 1 second (adjust as needed)
+    }
+  }, []);
+  
+
   //newletter data
   const [data, setData] = useState({});
 
@@ -104,10 +121,11 @@ function Newsletter() {
                       mainId={data._id}
                       data={ele}
                       email={email}
+                      date={date}
                     />
                   ))}
                 </div>
-                <EditorsPreview/>
+                <EditorsPreview />
               </div>
             </div>
           </div>
@@ -115,12 +133,13 @@ function Newsletter() {
       )}
       {notFound && (
         <>
-          <h1
+          {/* <h1
             style={{ height: "100vh" }}
             className="d-flex justify-content-center align-items-center"
           >
             404 Not Found
-          </h1>
+          </h1> */}
+          <ErrorPage/>
         </>
       )}
     </>

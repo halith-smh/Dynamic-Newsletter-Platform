@@ -44,7 +44,7 @@ const login = async (req, res) => {
   }
 };
 
-const loginVerify = async (req, res, next) => {
+const loginVerify = async (req, res) => {
   const token = req.headers["x-access-token"];
   if (!token) {
     return res.status(401).send("Unauthorized: Token not provided");

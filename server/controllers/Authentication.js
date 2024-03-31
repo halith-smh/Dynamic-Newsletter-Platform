@@ -34,7 +34,8 @@ const login = async (req, res) => {
 
         const cookieOptions = {
           sameSite: 'None', // Change 'Lax' to 'None' since your frontend and backend are on different origins
-          secure: true, // Set to true since your backend is running over HTTPS
+ // Set to true since your backend is running over HTTPS
+          httpOnly : false
         };
         
         res.status(200).cookie("token", token, cookieOptions).send("Login Successful");

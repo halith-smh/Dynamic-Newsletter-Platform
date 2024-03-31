@@ -27,32 +27,12 @@ const login = async (req, res) => {
     if (user) {
       const pswrd = await bcrypt.compare(password, user.password);
       if (pswrd) {
-        const token = jwt.sign(
-          {
-            id: user._id,
-            email: user.email,
-            role: user.role,
-            department: user.department,
-          },
-          key,
-          {
-            expiresIn: "1d",
-          }
-        );
+        const token = jwt.sign({ id : user._id, email: user.email, role: user.role, department: user.
+          department }, key, {
+          expiresIn: "1d",
+        });
 
-        if (req.secure) {
-          res
-            .cookie("token", token, {
-              secure: true,
-              httpOnly: true,
-              sameSite: "None",
-            })
-            .send("Login Successful");
-        } else {
-          res
-            .cookie("token", token, { httpOnly: true, sameSite: "None" })
-            .send("Login Successful");
-        }
+        res.status(200).cookie("token", token, { sameSite: 'Lax', secure: true });
       } else {
         res.status(500).send("The Password is incorrect");
       }
@@ -72,18 +52,14 @@ const loginVerify = async (req, res) => {
 
   try {
     const d_token = jwt.verify(token, process.env.JWT_TOKEN);
-    if (d_token) {
-      const posts = await PostModel.find(
-        { isPublished: true },
-        "date thumbnail updatedAt comments"
-      )
-        .sort({ date: -1 })
-        .limit(6);
-      if (posts) {
-        return res.status(200).send({ posts });
+    if (d_token){
+      const posts = await PostModel.find({isPublished: true}, "date thumbnail updatedAt comments").sort({date: -1}).limit(6);
+      if(posts){
+        return  res.status(200).send({posts});
       }
       res.status(200).send("Token is valid");
     }
+    
   } catch (error) {
     console.log(error);
     res.status(500).send("Invalid Token");

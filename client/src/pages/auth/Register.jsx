@@ -26,7 +26,7 @@ function Register() {
     e.preventDefault();
     const tLoader = toast.loading('Creating User...')
     try{
-      const result = await axios.post('auth/register', {name,email,password});
+      const result = await axios.post('/auth/register', {name,email,password});
       console.log(result);
       toast.dismiss(tLoader);
       toast.success('Registration successful...');

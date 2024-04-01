@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import axios from "axios";
-axios.defaults.baseURL = 'http://localhost:4000/api';
+// axios.defaults.baseURL = 'http://localhost:4000/api/';
+axios.defaults.baseURL = 'https://ignite-mm4z.onrender.com/api/';
 
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";

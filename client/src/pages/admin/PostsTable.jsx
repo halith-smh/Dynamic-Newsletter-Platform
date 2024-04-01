@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "wc-toast";
 
 function PostsTable({ token, formatDate }) {
   axios.defaults.headers["x-access-token"] = token;
@@ -22,9 +23,7 @@ function PostsTable({ token, formatDate }) {
 
   const dataFetch = async () => {
     try {
-      const resData = await axios.get(
-        "admin/table-posts"
-      );
+      const resData = await axios.get("admin/table-posts");
       setData(resData.data);
       console.log(resData.data);
     } catch (error) {
@@ -36,9 +35,16 @@ function PostsTable({ token, formatDate }) {
     dataFetch();
   }, []);
 
+  const shareURL = (date) => {
+    navigator.clipboard.writeText(
+      `http://localhost:5173/newsletter/${date}`
+    );
+    toast(`Copied to Clipboard`, { theme: { type: "dark" } });
+  };
+
   return (
-    <div className="col-11 m-auto">
-      <table className="table table-hover" >
+    <div className="col-11 m-auto rounded shadow">
+      <table className="table table-hover rounded" style={{ fontSize: 18 }}>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -52,9 +58,22 @@ function PostsTable({ token, formatDate }) {
             <tr key={ele._id}>
               <th scope="row">{index + 1}</th>
               <td>{formatDate(ele.date)}</td>
-              <td>{ele.comments.length}</td>
+              <td className="">{ele.comments.length}</td>
               <td>
-                <Link target="_blank" to={`/newsletter/${formatDateLink(ele.date)}`}>{formatDateLink(ele.date)}</Link>
+                <span
+                  type="button"
+                  onClick={() => shareURL(formatDateLink(ele.date))}
+                  title="Share"
+                  className="px-2"
+                >
+                  <i className="bi bi-share-fill"></i>
+                </span>
+                <Link
+                  target="_blank"
+                  to={`/newsletter/${formatDateLink(ele.date)}`}
+                >
+                  {formatDateLink(ele.date)}
+                </Link>
               </td>
             </tr>
           ))}

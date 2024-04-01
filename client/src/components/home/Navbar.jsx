@@ -90,7 +90,7 @@ function Navbar({ role, email, Logout, homeActive, ediorActive, profileActive, r
                   <button className="dropdown-item" type="button">
                     <Link className="ref" to="/admin/dashboard">
                       {" "}
-                      Approve post
+                     Dashboard
                     </Link>
                   </button>
                 </li>

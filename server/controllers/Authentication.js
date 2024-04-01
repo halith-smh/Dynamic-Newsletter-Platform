@@ -31,7 +31,7 @@ const login = async (req, res) => {
           department }, key, {
           expiresIn: "1d",
         });
-
+        
         res.status(200).cookie("token", token).send("Login Successful");
       } else {
         res.status(500).send("The Password is incorrect");

@@ -3,26 +3,31 @@ import React from "react";
 function Preview({ event, index, deleteEvent }) {
   return (
     <>
-      <div className="card">
+      <div className="card" style={{width: '530px', height: '350'}}>
         <div className="card-body">
-          <h5
-            className="card-title m-auto text-center py-3"
-            style={{ fontSize: 25, fontWeight: 600 }}
-          >
-            {event.title}
-          </h5>
+        <div className="right">
+              <h6 className="label-clr mt-1">
+                <i className="bi bi-mortarboard"></i> {event.department}
+              </h6>
+            </div>
           {event.img && (
             <img
-              className="card-img-top"
+              className="card-img-top rounded"
               width={600}
               height={450}
               src={URL.createObjectURL(event.img)}
               alt="Event Preview"
             />
           )}
-          <p className="card-text p-2 my-2" style={{ fontSize: 18 }}>
+          <h5
+            className="py-1 mt-2"
+            style={{ fontSize: 22, fontWeight: 600 }}
+          >
+            {event.title}
+          </h5><p className="card-text" style={{ fontSize: 17 }}>
             {event.description}
           </p>
+         
           <div className="card-footerCC d-flex justify-content-between">
             <div className="left">
               <h6 className="mt-2" style={{ fontSize: 18 }}>
@@ -34,11 +39,7 @@ function Preview({ event, index, deleteEvent }) {
                 {event.category}
               </h6>
             </div>
-            <div className="right">
-              <h6 className="label-clr mt-4">
-                <i className="bi bi-mortarboard"></i> {event.department}
-              </h6>
-            </div>
+           
           </div>
         </div>
 
@@ -47,9 +48,9 @@ function Preview({ event, index, deleteEvent }) {
             title="Delete an event"
             onClick={() => deleteEvent(index)}
             className="btn btn-danger mr-2 position-absolute"
-            style={{ top: "5px", right: "5px" }}
+            style={{ top: "8px", right: "5px", fontSize: '13px' }}
           >
-            <i className="bi bi-trash"></i>
+            <i className="bi bi-trash"></i> Remove
           </button>
         )}
       </div>

@@ -13,7 +13,6 @@ function Editors() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-
   const verifyToken = async (token) => {
     try {
       const result = await axios.get("auth/login", {
@@ -71,7 +70,7 @@ function Editors() {
       console.error(err.message);
       nav("/sign-in");
     }
-  },[]);
+  }, []);
 
   const Logout = () => {
     setIsAuth(false);
@@ -82,54 +81,73 @@ function Editors() {
 
   return (
     <>
-    {isAuth && <>
-      <div className="HomePg">
-          <Navbar role={role} email={email} Logout={Logout} ediorActive="active" />
-        </div>
-
-        <div className="container editorsPg">
-        {/* <h2>List of Editors</h2> */}
-        <div className="row">
-          
-        <div className="col-md-4">
-            <div className="editor m-auto text-center">
-              <img
-                src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?w=740&t=st=1711192847~exp=1711193447~hmac=112e72fe9188729eb693d2c43110642285641034596fa211f2e256e344695b5f"
-                alt="Editor 1"
-                width={220}
-              />
-              <h5><strong>MR. ARUN DASS</strong></h5>
-              <h6><i className="bi bi-mortarboard p-1"></i>AI & DS</h6>
-            </div>
+      {isAuth && (
+        <>
+          <div className="HomePg">
+            <Navbar
+              role={role}
+              email={email}
+              Logout={Logout}
+              ediorActive="active"
+            />
           </div>
 
-          <div className="col-md-4">
-            <div className="editor m-auto text-center">
-              <img
-                src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?w=740&t=st=1711192847~exp=1711193447~hmac=112e72fe9188729eb693d2c43110642285641034596fa211f2e256e344695b5f"
-                alt="Editor 1"
-                width={220}
-              />
-              <h5><strong>MR. ARUN DASS</strong></h5>
-              <h6><i className="bi bi-mortarboard p-1"></i>AI & DS</h6>
-            </div>
-          </div>
+          <div className="profile-main">
+            <div className="container editorsPg">
+              {/* <h2>List of Editors</h2> */}
+              <div className="row" style={{justifyContent: 'space-between'}}>
+                <div className="col-md-3 editorPrev">
+                  <div className="editor m-auto text-center">
+                    <img
+                      src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?w=740&t=st=1711192847~exp=1711193447~hmac=112e72fe9188729eb693d2c43110642285641034596fa211f2e256e344695b5f"
+                      alt="Editor 1"
+                      width={220}
+                    />
+                    <h5>
+                      <strong>Mr. Arun Kumar</strong>
+                    </h5>
+                    <h6 style={{color: '#6d23e4', fontSize: 18, fontWeight: 600}}>
+                      <i className="bi bi-mortarboard p-1"></i>AI & DS
+                    </h6>
+                  </div>
+                </div>
 
-          <div className="col-md-4">
-            <div className="editor m-auto text-center">
-              <img
-                src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?w=740&t=st=1711192847~exp=1711193447~hmac=112e72fe9188729eb693d2c43110642285641034596fa211f2e256e344695b5f"
-                alt="Editor 1"
-                width={220}
-              />
-              <h5><strong>MR. ARUN DASS</strong></h5>
-              <h6><i className="bi bi-mortarboard p-1"></i>AI & DS</h6>
+                <div className="col-md-3 editorPrev">
+                  <div className="editor m-auto text-center">
+                    <img
+                      src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?w=740&t=st=1711192847~exp=1711193447~hmac=112e72fe9188729eb693d2c43110642285641034596fa211f2e256e344695b5f"
+                      alt="Editor 1"
+                      width={220}
+                    />
+                    <h5>
+                      <strong>Mr. Raghavendran</strong>
+                    </h5>
+                    <h6 style={{color: '#6d23e4', fontSize: 18, fontWeight: 600}}>
+                      <i className="bi bi-mortarboard p-1"></i>CSE
+                    </h6>
+                  </div>
+                </div>
+
+                <div className="col-md-3 editorPrev">
+                  <div className="editor m-auto text-center">
+                    <img
+                      src="https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?w=740&t=st=1711192847~exp=1711193447~hmac=112e72fe9188729eb693d2c43110642285641034596fa211f2e256e344695b5f"
+                      alt="Editor 1"
+                      width={220}
+                    />
+                    <h5>
+                      <strong>Mr. Suriya Kumar</strong>
+                    </h5>
+                    <h6 style={{color: '#6d23e4', fontSize: 18, fontWeight: 600}}>
+                      <i className="bi bi-mortarboard p-1"></i>IT
+                    </h6>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </>}
-     
+        </>
+      )}
     </>
   );
 }

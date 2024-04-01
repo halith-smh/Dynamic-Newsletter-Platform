@@ -7,12 +7,12 @@ function SinglePost({ data, email, mainId, date }) {
 
 
   return (
-    <div className="col-8 mt-2 mb-5" id={data._id}>
+    <div style={{width: '530px'}} className="mt-2 mb-5" id={data._id}>
       <div className="mainDiv">
 
         <div className="depts my-1">
-          <span className="label-clr">
-            <i className="bi bi-tag-fill"></i> {data.category}
+          <span className="label-clr text-capitalize">
+            <i className="bi bi-tag-fill "></i> {data.category}
           </span>
         </div>
 

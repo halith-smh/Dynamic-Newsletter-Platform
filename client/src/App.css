@@ -174,7 +174,10 @@ nav .verified-tick-warning {
   -moz-box-shadow: -1px 2px 28px -9px rgba(0, 0, 0, 0.66);
 }
 .HomePg .homeNews {
-  margin-top: 65px;
+  /* margin-top: 65px; */
+}
+.bgClrBlue{
+  background-color: #d5cfff18;
 }
 .HomePg .homeNews h3 {
   text-decoration: underline;
@@ -217,7 +220,7 @@ nav .verified-tick-warning {
   height: 450 !important;
 }
 .card-img-top {
-  border: 4px solid rgba(0, 0, 0, 0.68);
+  border: 1px solid rgba(0, 0, 0, 0.68);
   border-radius: 22px !important;
   box-shadow: var(--box-shadow);
 }
@@ -257,7 +260,7 @@ nav .verified-tick-warning {
   margin-top: 79px;
   /* background-color: #e9eaef; */
   min-height: 100vh;
-  background-image: url("./assets/imgs/home/pattern.jpg");
+  background-image: url("./assets/imgs/home/pattern.jpg");  
 }
 
 .newsletter .title-cc {
@@ -283,17 +286,28 @@ nav .verified-tick-warning {
 
 /*============ Editors Page =============*/
 .editorsPg {
-  margin-top: 70px;
+  padding-top: 120px;
+}
+.editorPrev{
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
 }
 
 /*===========  Profile Page ============== */
+
+.profile-main{
+  background-image: url("./assets/imgs/home/pattern.jpg");
+  min-height: 100vh;
+
+}
 .profilePg {
-  margin-top: 90px;
+  padding-top: 120px;
 }
 
 /*===========  LeaderBoard/Top Readers ============== */
 .leaderboard-container {
-  margin-top: 90px;
+  padding-top: 100px;
 }
 
 .leaderboard-header {

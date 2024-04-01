@@ -135,6 +135,7 @@ function PostApprove() {
       console.log(response);
       setEvents({});
       verifyToken();
+      toast.success('Newsletter Published !')
     } catch (error) {
       console.error("Error publishing post:", error);
     }

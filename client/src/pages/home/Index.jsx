@@ -102,17 +102,20 @@ function Index() {
           <div className="main">
             <Hero />
           </div>
+          <div className="bgClrBlue">
           <div className="container homeNews">
-            <h3 style={{ fontWeight: 600 }} className="mb-5">
+            <h3 style={{ fontWeight: 600 }} className="mb-3 pt-5">
               {" "}
               Previous Newsletters
             </h3>
-            <div className="row">
+            <div className="row" style={{display: 'flex', justifyContent: 'space-evenly'}}>
               {posts.map((element, index) => (
                 <NewsletterPreview key={element._id} element={element} />
               ))}
             </div>
           </div>
+          </div>
+         
         </div>
       )}
     </>

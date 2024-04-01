@@ -13,6 +13,8 @@ function Editor() {
 
   const nav = useNavigate();
 
+  const token = Cookies.get("token");
+
   const [isAuth, setIsAuth] = useState(false);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
@@ -39,7 +41,6 @@ function Editor() {
   };
 
   useEffect(() => {
-    const token = Cookies.get("token");
 
     if (!token) {
       nav("/sign-in");
@@ -125,7 +126,7 @@ function Editor() {
       const response = await axios.post(
         "posts/add",
         { events: events }, // Pass updated formData directly here
-        { headers: { "Content-Type": "multipart/form-data" } }
+        { headers: { "Content-Type": "multipart/form-data", "x-access-token": token } }
       );
       console.log(response);
       toast.success('Posts submitted for Review')

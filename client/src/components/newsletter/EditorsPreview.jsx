@@ -51,7 +51,7 @@ function EditorsPreview() {
               {/* <i className="bi bi-person-circle"></i> */}
             </div>
             <div className="desc">
-              <h5>Mohamed Halith S</h5>
+              <h5>AI&DS Editor</h5>
               <h6>Dept: AI & Ds</h6>
             </div>
           </div>
@@ -61,8 +61,8 @@ function EditorsPreview() {
               {/* <i className="bi bi-person-circle"></i> */}
             </div>
             <div className="desc">
-              <h5>Mohamed Halith S</h5>
-              <h6>Dept: AI & Ds</h6>
+              <h5>CSE Editor</h5>
+              <h6>Dept: CSE</h6>
             </div>
           </div>
           <div className="d-flex box">
@@ -71,8 +71,8 @@ function EditorsPreview() {
               {/* <i className="bi bi-person-circle"></i> */}
             </div>
             <div className="desc">
-              <h5>Mohamed Halith S</h5>
-              <h6>Dept: AI & Ds</h6>
+              <h5>IT Editor</h5>
+              <h6>Dept: IT</h6>
             </div>
           </div>
           <div className="d-flex box">
@@ -80,31 +80,12 @@ function EditorsPreview() {
               <img src={Editor} width={38} alt="" />
               {/* <i className="bi bi-person-circle"></i> */}
             </div>
-            <div className="desc">
-              <h5>Mohamed Halith S</h5>
-              <h6>Dept: AI & Ds</h6>
+            <div className="desc mb-4">
+              <h5>ECE Editor</h5>
+              <h6>Dept: ECE</h6>
             </div>
           </div>
-          <div className="d-flex box">
-            <div className="icons">
-              <img src={Editor} width={38} alt="" />
-              {/* <i className="bi bi-person-circle"></i> */}
-            </div>
-            <div className="desc">
-              <h5>Mohamed Halith S</h5>
-              <h6>Dept: AI & Ds</h6>
-            </div>
-          </div>
-          <div className="d-flex box pb-4">
-            <div className="icons">
-              <img src={Editor} width={38} alt="" />
-              {/* <i className="bi bi-person-circle"></i> */}
-            </div>
-            <div className="desc">
-              <h5>Mohamed Halith S</h5>
-              <h6>Dept: AI & Ds</h6>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

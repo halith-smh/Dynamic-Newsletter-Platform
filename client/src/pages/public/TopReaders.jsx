@@ -90,23 +90,26 @@ function TopReaders() {
       case 0:
         return (
           <>
-           <i className="bi bi-trophy-fill" style={{color: 'gold'}}></i> {`${index + 1}st`}
+            <i className="bi bi-trophy-fill" style={{ color: "gold" }}></i>{" "}
+            {`${index + 1}st`}
           </>
         );
       case 1:
         return (
-        <>
-           <i className="bi bi-trophy-fill" style={{color: 'silver'}}></i> {`${index + 1}st`}
-        </>
+          <>
+            <i className="bi bi-trophy-fill" style={{ color: "silver" }}></i>{" "}
+            {`${index + 1}st`}
+          </>
         );
       case 2:
         return (
           <>
-             <i className="bi bi-trophy-fill" style={{color: '#cd7f32'}}></i> {`${index + 1}st`}
+            <i className="bi bi-trophy-fill" style={{ color: "#cd7f32" }}></i>{" "}
+            {`${index + 1}st`}
           </>
-          );
+        );
       default:
-        return `${index+1}th`;
+        return `${index + 1}th`;
     }
   };
 
@@ -123,34 +126,36 @@ function TopReaders() {
             />
           </div>
 
-          <div className="container leaderboard-container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="leaderboard-header text-center">
-                  <h2>Leaderboard</h2>
+          <div className="profile-mains">
+            <div className="container leaderboard-container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="leaderboard-header text-center">
+                    <h2>Leaderboard</h2>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Position</th>
-                      <th>Name</th>
-                      <th>XP Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.map((reader, index) => (
-                      <tr id={index} key={index}>
-                        <td>{getRankIcon(index)}</td>
-                        <td className="text-capitalize">{reader.name}</td>
-                        <td>{`${reader.score} XP`}</td>
+              <div className="row">
+                <div className="col-md-12">
+                  <table className="table border">
+                    <thead>
+                      <tr>
+                        <th>Position</th>
+                        <th>Name</th>
+                        <th>XP Points</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {data.map((reader, index) => (
+                        <tr id={index} key={index}>
+                          <td>{getRankIcon(index)}</td>
+                          <td className="text-capitalize">{reader.name}</td>
+                          <td>{`${reader.score} XP`}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

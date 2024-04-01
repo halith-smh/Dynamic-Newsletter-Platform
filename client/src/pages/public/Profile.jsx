@@ -125,25 +125,30 @@ function Profile() {
       </div>
       {isAuth && (
         <>
-          <div className="container profilePg">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="card m-auto text-center">
+        <div className="profile-main">
+
+        <div className="container profilePg">
+          
+            <div className="row mt-5" >
+              <div className="col-md-4" >
+                <div className="card m-auto text-center" style={{boxShadow: '-2px 2.5px 21.5px 3.5px #dddddd'}}>
                   <img
-                    className="m-auto"
+                    className="m-auto rounded mt-4"
                     src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
                     alt="Profile"
                     width={200}
+                    style={{border: '3px solid #6d23e4'}}
                   />
                   <div className="card-body text-center">
-                    <h5 className="card-title">{data.name}</h5>
-                    <p className="card-text">{data.role}</p>
+                    <h5 className="card-title text-capitalize">{data.name}</h5>
+                    <p className="card-text text-capitalize">{data.role}</p>
                   </div>
                   <div className="my-2">
                     <button
+                    style={{background: '#6d23e4', color:'white',fontSize: 15}}
                       data-bs-toggle="modal"
                       data-bs-target="#updateProfile"
-                      className="btn btn-sm px-3 btn-primary"
+                      className="btn btn-sm px-4 my-2"
                     >
                       <i className="bi bi-pencil-fill"></i> Edit
                     </button>
@@ -208,13 +213,13 @@ function Profile() {
                     <h5 className="card-title">Profile Details</h5>
                     <ul className="list-group">
                       <li className="list-group-item">
-                        <strong>Email:</strong> {data.email}
+                       <strong><i class="bi bi-envelope-at-fill" style={{color:'#6d23e4'}}></i> Email:</strong> {data.email}
                       </li>
                       <li className="list-group-item">
-                        <strong>Department:</strong> {department}
+                        <strong><i class="bi bi-mortarboard-fill" style={{color:'#6d23e4'}}></i> Department:</strong> {department}
                       </li>
                       <li className="list-group-item">
-                        <strong>Score:</strong> {data.score} xp
+                      <i class="bi bi-award-fill" style={{color: 'gold'}}></i> <strong>Score:</strong> {data.score} xp
                       </li>
                     </ul>
                   </div>
@@ -222,17 +227,19 @@ function Profile() {
                 <div className="card mt-3">
                   <div className="card-body">
                     <h5 className="card-title">
-                      Liked Posts: <span>{data.liked.length}</span>
+                     Liked Posts: <span>{data.liked.length} <i class="bi bi-heart-fill" style={{color: 'red'}}></i></span>
                     </h5>
                     <hr />
                     <h5 className="card-title">
-                      Joined on: {formatDate(data.createdAt)}
+                    <i class="bi bi-calendar-event-fill" style={{color: '#6d23e4', fontSize: 18}}></i> Joined on: {formatDate(data.createdAt)}
                     </h5>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+          
         </>
       )}
     </>

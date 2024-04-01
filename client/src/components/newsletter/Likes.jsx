@@ -49,7 +49,7 @@ function Likes({ data, email, mainId, date }) {
 
   return (
     <div id="likes">
-      <i type="button" onClick={() => {navigator.clipboard.writeText(`http://localhost:5173/newsletter/${date}#${id}`);toast.success('Copied to Clipboard')}} className="bi bi-share-fill" style={{color: 'blue'}}></i>
+      <i type="button" onClick={() => {navigator.clipboard.writeText(`http://localhost:5173/newsletter/${date}#${id}`);toast(`Copied to Clipboard`, { theme: { type: 'dark' }  })}} className="bi bi-share-fill" style={{color: 'blue'}}></i>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <i
         type="button"

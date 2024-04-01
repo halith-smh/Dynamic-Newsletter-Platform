@@ -66,7 +66,7 @@ const publishPost = async (req, res) => {
 
 const tablePosts = async (req, res) => {
   try {
-    const data = await PostModel.find();
+    const data = await PostModel.find().sort({ date: -1 });
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send(error);

@@ -36,7 +36,7 @@ const login = async (req, res) => {
         //   SameSite: 'None'
         // }).send("Login Successful");
 
-        res.status(200).cookie("token", token, {sameSite: 'none', httpOnly: false,secure: true}).send("Login Successful");
+        res.status(200).cookie("token", token, {sameSite: 'none', HttpOnly: false,secure: true}).send("Login Successful");
       } else {
         res.status(500).send("The Password is incorrect");
       }

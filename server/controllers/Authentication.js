@@ -34,11 +34,8 @@ const login = async (req, res) => {
 
 
         res.cookie("token", token, {
-          httpOnly: true, // Restricts access to server-side requests
-          path: "/",       // Makes the cookie valid for all paths on the domain
-          secure: true,   // Requires HTTPS for transmission (prevents insecure connections)
-          sameSite: "none", // Allows cross-site requests (consider security implications)
-          maxAge: 3600000, // Sets expiration time to 1 hour (3600 seconds * 1000 milliseconds)
+          maxAge: 86400000,
+          httpOnly: true
         }).send("Login Successful");
         
 

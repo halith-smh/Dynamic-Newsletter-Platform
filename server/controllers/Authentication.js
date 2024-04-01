@@ -34,17 +34,13 @@ const login = async (req, res) => {
 
 
         res.cookie("token", token, {
-          // can only be accessed by server requests
-          httpOnly: true,
-          // path = where the cookie is valid
-          path: "/",
-          // secure = only send cookie over https
-          secure: true,
-          // sameSite = only send cookie if the request is coming from the same origin
-          sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
-          // maxAge = how long the cookie is valid for in milliseconds
-          maxAge: 3600000, // 1 hour
+          httpOnly: true, // Restricts access to server-side requests
+          path: "/",       // Makes the cookie valid for all paths on the domain
+          secure: true,   // Requires HTTPS for transmission (prevents insecure connections)
+          sameSite: "none", // Allows cross-site requests (consider security implications)
+          maxAge: 3600000, // Sets expiration time to 1 hour (3600 seconds * 1000 milliseconds)
         }).send("Login Successful");
+        
 
         // res.status(200).cookie("token", token).send("Login Successful");
       } else {

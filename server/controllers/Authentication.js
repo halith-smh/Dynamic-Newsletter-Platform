@@ -32,13 +32,7 @@ const login = async (req, res) => {
           expiresIn: "1d",
         });
 
-        const cookieOptions = {
-          sameSite: 'None', // Change 'Lax' to 'None' since your frontend and backend are on different origins
- // Set to true since your backend is running over HTTPS
-          httpOnly : false
-        };
-        
-        res.status(200).cookie("token", token, cookieOptions).send("Login Successful");
+        res.status(200).cookie("token", token).send("Login Successful");
       } else {
         res.status(500).send("The Password is incorrect");
       }

@@ -32,7 +32,7 @@ function Login() {
         console.log(result.data);
         toast.dismiss(tLoader);
         toast.success("Login Successful");
-        // nav("/");
+        nav("/");
       }
     } catch (error) {
       console.log(error);

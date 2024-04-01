@@ -32,12 +32,10 @@ const login = async (req, res) => {
           expiresIn: "1d",
         });
 
-
         res.cookie("token", token, {
           maxAge: 86400000,
           httpOnly: true
         }).send("Login Successful");
-        
 
         // res.status(200).cookie("token", token).send("Login Successful");
       } else {

@@ -21,7 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://dynamic-newsletter-platform.onrender.com/",
+    origin: "https://dynamic-newsletter-platform.onrender.com",
     methods: ["GET", "POST", "PATCH"],
     credentials: true,
   })

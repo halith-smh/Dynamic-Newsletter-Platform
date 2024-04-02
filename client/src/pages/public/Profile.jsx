@@ -43,7 +43,6 @@ function Profile() {
   };
 
   useEffect(() => {
-   
     if (!token) {
       nav("/sign-in");
       return;
@@ -79,7 +78,7 @@ function Profile() {
       console.error(err.message);
       nav("/sign-in");
     }
-  },[]);
+  }, []);
 
   const Logout = () => {
     setIsAuth(false);
@@ -96,23 +95,27 @@ function Profile() {
     return `${day}-${month}-${year}`;
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-       const result = await axios.patch("/profile", {department},{
-        headers: {
-          "x-access-token": token,
-        },
-      });
-      if(result){
+    try {
+      const result = await axios.patch(
+        "/profile",
+        { department },
+        {
+          headers: {
+            "x-access-token": token,
+          },
+        }
+      );
+      if (result) {
         console.log(result);
         setDepartment(result.data.user.department);
-        toast.success('Profile Updated...')
+        toast.success("Profile Updated...");
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <>
       <div className="HomePg">
@@ -125,121 +128,185 @@ function Profile() {
       </div>
       {isAuth && (
         <>
-        <div className="profile-main">
-
-        <div className="container profilePg">
-          
-            <div className="row mt-5" >
-              <div className="col-md-4" >
-                <div className="card m-auto text-center" style={{boxShadow: '-2px 2.5px 21.5px 3.5px #dddddd'}}>
-                  <img
-                    className="m-auto rounded mt-4"
-                    src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
-                    alt="Profile"
-                    width={200}
-                    style={{border: '3px solid #6d23e4'}}
-                  />
-                  <div className="card-body text-center">
-                    <h5 className="card-title text-capitalize">{data.name}</h5>
-                    <p className="card-text text-capitalize">{data.role}</p>
-                  </div>
-                  <div className="my-2">
-                    <button
-                    style={{background: '#6d23e4', color:'white',fontSize: 15}}
-                      data-bs-toggle="modal"
-                      data-bs-target="#updateProfile"
-                      className="btn btn-sm px-4 my-2"
-                    >
-                      <i className="bi bi-pencil-fill"></i> Edit
-                    </button>
-                  </div>
-                  {/* <!-- Modal --> */}
+          <div className="profile-main">
+            <div className="container profilePg">
+              <div className="row mt-5">
+                <div className="col-md-4">
                   <div
-                    className="modal fade"
-                    id="updateProfile"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
+                    className="card m-auto text-center"
+                    style={{ boxShadow: "-2px 2.5px 21.5px 3.5px #dddddd" }}
                   >
-                    <div className="modal-dialog">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h1
-                            className="modal-title fs-5"
-                            id="exampleModalLabel"
-                          >
-                            Update Profile
-                          </h1>
-                          <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <form onSubmit={handleSubmit}>
-                          <div className="modal-body text-start">
-                            <span className="text-start my-2">Department</span>
-                            <select onChange={(e) => setDepartment(e.target.value)} className="form-select" value={department} required>
-                              <option value="" disabled selected>
-                                Choose your department
-                              </option>
-                              <option value="Artificial Intelliegence & Data Science">AIDS</option>
-                              <option value="Computer Science & Engineerig">CSE</option>
-                              <option value="Information Technology">IT</option>
-                              <option value="Electrical & Electronics Engineering ">ECE</option>
-                            </select>
-                          </div>
-                          <div className="modal-footer">
+                    <img
+                      className="m-auto rounded mt-4"
+                      src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
+                      alt="Profile"
+                      width={200}
+                      style={{ border: "3px solid #6d23e4" }}
+                    />
+                    <div className="card-body text-center">
+                      <h5 className="card-title text-capitalize">
+                        {data.name}
+                      </h5>
+                      <p className="card-text text-capitalize">{data.role}</p>
+                    </div>
+                    <div className="my-2">
+                      <button
+                        style={{
+                          background: "#6d23e4",
+                          color: "white",
+                          fontSize: 15,
+                        }}
+                        data-bs-toggle="modal"
+                        data-bs-target="#updateProfile"
+                        className="btn btn-sm px-4 my-2"
+                      >
+                        <i className="bi bi-pencil-fill"></i> Edit
+                      </button>
+                    </div>
+                    {/* <!-- Modal --> */}
+                    <div
+                      className="modal fade"
+                      id="updateProfile"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id="exampleModalLabel"
+                            >
+                              Update Profile
+                            </h1>
                             <button
                               type="button"
-                              className="btn btn-secondary"
+                              className="btn-close"
                               data-bs-dismiss="modal"
-                            >
-                              Close
-                            </button>
-                            <button type="submit" data-bs-dismiss="modal" className="btn btn-primary">
-                              Save changes
-                            </button>
+                              aria-label="Close"
+                            ></button>
                           </div>
-                        </form>
+                          <form onSubmit={handleSubmit}>
+                            <div className="modal-body text-start">
+                              <span className="text-start my-2">
+                                Department
+                              </span>
+                              <select
+                                onChange={(e) => setDepartment(e.target.value)}
+                                className="form-select"
+                                value={department}
+                                required
+                              >
+                                <option value="" disabled selected>
+                                  Choose your department
+                                </option>
+                                <option value="Artificial Intelliegence & Data Science">
+                                  AIDS
+                                </option>
+                                <option value="Computer Science & Engineerig">
+                                  CSE
+                                </option>
+                                <option value="Information Technology">
+                                  IT
+                                </option>
+                                <option value="Electrical & Electronics Engineering ">
+                                  ECE
+                                </option>
+                              </select>
+                            </div>
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button
+                                type="submit"
+                                data-bs-dismiss="modal"
+                                className="btn btn-primary"
+                              >
+                                Save changes
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-8">
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">Profile Details</h5>
-                    <ul className="list-group">
-                      <li className="list-group-item">
-                       <strong><i class="bi bi-envelope-at-fill" style={{color:'#6d23e4'}}></i> Email:</strong> {data.email}
-                      </li>
-                      <li className="list-group-item">
-                        <strong><i class="bi bi-mortarboard-fill" style={{color:'#6d23e4'}}></i> Department:</strong> {department}
-                      </li>
-                      <li className="list-group-item">
-                      <i class="bi bi-award-fill" style={{color: 'gold'}}></i> <strong>Score:</strong> {data.score} xp
-                      </li>
-                    </ul>
+                <div className="col-md-8">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Profile Details</h5>
+                      <ul className="list-group">
+                        <li className="list-group-item">
+                          <strong>
+                            <i
+                              class="bi bi-envelope-at-fill"
+                              style={{ color: "#6d23e4" }}
+                            ></i>{" "}
+                            Email:
+                          </strong>{" "}
+                          {data.email}
+                        </li>
+                        <li className="list-group-item">
+                          <strong>
+                            <i
+                              class="bi bi-mortarboard-fill"
+                              style={{ color: "#6d23e4" }}
+                            ></i>{" "}
+                            Department:
+                          </strong>{" "}
+                          {department}
+                        </li>
+                        <li className="list-group-item">
+                          {data.role === "admin" || data.role === "editor" ? (
+                            <>
+                              
+                            </>
+                          ) : (
+                            <>
+                              {" "}
+                              {/* Render the score if user is not admin or editor */}
+                              <i
+                                className="bi bi-award-fill"
+                                style={{ color: "gold" }}
+                              ></i>
+                              <strong>Score:</strong> {data.score} xp
+                            </>
+                          )}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="card mt-3">
-                  <div className="card-body">
-                    <h5 className="card-title">
-                     Liked Posts: <span>{data.liked.length} <i class="bi bi-heart-fill" style={{color: 'red'}}></i></span>
-                    </h5>
-                    <hr />
-                    <h5 className="card-title">
-                    <i class="bi bi-calendar-event-fill" style={{color: '#6d23e4', fontSize: 18}}></i> Joined on: {formatDate(data.createdAt)}
-                    </h5>
+                  <div className="card mt-3">
+                    <div className="card-body">
+                      <h5 className="card-title">
+                        Liked Posts:{" "}
+                        <span>
+                          {data.liked.length}{" "}
+                          <i
+                            class="bi bi-heart-fill"
+                            style={{ color: "red" }}
+                          ></i>
+                        </span>
+                      </h5>
+                      <hr />
+                      <h5 className="card-title">
+                        <i
+                          class="bi bi-calendar-event-fill"
+                          style={{ color: "#6d23e4", fontSize: 18 }}
+                        ></i>{" "}
+                        Joined on: {formatDate(data.createdAt)}
+                      </h5>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-          
         </>
       )}
     </>

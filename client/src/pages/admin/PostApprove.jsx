@@ -271,6 +271,8 @@ function PostApprove() {
               <div className="d-flex justify-content-between">
                 <div className="info">
                   <h3> Dashboard</h3>
+                <h5 className="pt-1">{`${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`}</h5>
+
                 </div>
                 {/* Check for condition btn */}
                 {postData && (
@@ -344,7 +346,7 @@ function PostApprove() {
 
             <hr />
             <h3 className="py-3 px-4" style={{ fontWeight: 600 }}>
-              Published Letters
+              NewsLetter
             </h3>
 
             <div

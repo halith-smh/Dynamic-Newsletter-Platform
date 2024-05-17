@@ -32,11 +32,13 @@ const login = async (req, res) => {
           expiresIn: "1d",
         });
 
-        // res.cookie("token", token, {
-        //   SameSite: 'None'
-        // }).send("Login Successful");
-
-        res.status(200).cookie("token", token, {sameSite: 'none', HttpOnly: false,secure: true}).send("Login Successful");
+        // res.status(200).cookie("token", token, {sameSite: 'none', HttpOnly: false,secure: true}).send("Login Successful");
+        res.status(200).cookie("token", token, {
+          httpOnly: true, // Protect cookie from client-side scripting
+          secure: true,   // Only send cookie over HTTPS
+          sameSite: 'Lax'  // Allow cross-site requests with top-level navigation
+      }).send("Login Successful");
+      
       } else {
         res.status(500).send("The Password is incorrect");
       }

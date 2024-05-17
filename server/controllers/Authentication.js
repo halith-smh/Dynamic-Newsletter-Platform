@@ -36,7 +36,7 @@ const login = async (req, res) => {
         res.status(200).cookie("token", token, {
           httpOnly: true, // Protect cookie from client-side scripting
           secure: true,   // Only send cookie over HTTPS
-          sameSite: 'Lax'  // Allow cross-site requests with top-level navigation
+          sameSite: 'Strict'  //  Only allows requests from the same site
       }).send("Login Successful");
       
       } else {

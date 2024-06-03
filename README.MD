@@ -21,6 +21,9 @@ The Dynamic Newsletter Platform is a powerful tool built using Node.js, Express.
 ![Top Readers Page](/demo//ranking.png)
 *Top Readers*
 
+![Admin Dashboard](/demo/admin.png)
+*Admin Dashboard*
+
 ## Tech Stack
 
 - **Frontend**: React

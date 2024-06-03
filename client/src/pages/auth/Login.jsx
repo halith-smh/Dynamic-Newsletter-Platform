@@ -30,6 +30,7 @@ function Login() {
       const result = await axios.post('auth/login', {email, password});
       console.log(result.data);
       toast.dismiss(tLoader);
+      Cookies.set("token", result.data.token);
       toast.success('Login Successful');
       
       nav('/');

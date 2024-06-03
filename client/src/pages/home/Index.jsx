@@ -105,7 +105,6 @@ function Index() {
           <div className="bgClrBlue">
           <div className="container homeNews">
             <h3 style={{ fontWeight: 600 }} className="mb-3 pt-5">
-              {" "}
               Previous Newsletters
             </h3>
             <div className="row" style={{display: 'flex', justifyContent: 'space-evenly'}}>

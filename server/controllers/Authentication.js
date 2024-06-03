@@ -32,7 +32,8 @@ const login = async (req, res) => {
           expiresIn: "1d",
         });
         
-        res.status(200).cookie("token", token).send("Login Successful");
+        // res.status(200).cookie("token", token).send({token: token});
+        res.status(200).send({token: token});
       } else {
         res.status(500).send("The Password is incorrect");
       }

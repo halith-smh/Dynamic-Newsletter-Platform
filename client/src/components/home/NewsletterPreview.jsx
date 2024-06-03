@@ -58,9 +58,9 @@ function NewsletterPreview({ element }) {
     <div className="card rounded" style={{boxShadow: '-1px 2px 28px -9px rgba(0, 0, 0, 0.33)'}}>
       <img src={element.thumbnail} className="card-img-top-p" alt="..." style={{ maxWidth: '340px' }} />
       <div className="card-body">
-        <h5 style={{fontSize: 23}} className="card-title"><i style={{fontSize: 18, color: '#6d23e4'}} class="bi bi-calendar-check-fill"></i> {formatDate(element.date)}</h5>
+        <h5 style={{fontSize: 23}} className="card-title"><i style={{fontSize: 18, color: '#6d23e4'}} className="bi bi-calendar-check-fill"></i> {formatDate(element.date)}</h5>
         <h6 className="card-subtitle mb-2 text-muted">
-        <i class="bi bi-clock-history"></i> {timeAgo(element.date)}
+        <i className="bi bi-clock-history"></i> {timeAgo(element.date)}
         </h6>
       </div>
     </div>

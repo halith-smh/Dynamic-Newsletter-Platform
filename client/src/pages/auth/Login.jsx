@@ -28,10 +28,9 @@ function Login() {
     try {
       const result = await axios.post("/auth/login", { email, password });
       if (result) {
-        console.log(result);
-        console.log(result.data);
         toast.dismiss(tLoader);
         toast.success("Login Successful");
+        Cookies.set("token", result.data.token);
         nav("/");
       }
     } catch (error) {

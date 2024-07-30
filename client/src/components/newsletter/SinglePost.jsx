@@ -21,8 +21,8 @@ function SinglePost({ data, email, mainId, date }) {
         {/* <h4 id="title">{data.title}</h4> */}
         <div className="img-wrapper">
           <img
-            src={`http://localhost:4000/${data.img}`}
-            alt=""
+            src="https://firebasestorage.googleapis.com/v0/b/mohamedhaliths.appspot.com/o/assets%2Fimgs%2FNewsletter%20App.png?alt=media&token=cea32243-e52d-44cc-ac7a-e7a7fc85f398"
+            alt="Sample Post Image"
             className="card-img-post"
             width={500}
             height={380}

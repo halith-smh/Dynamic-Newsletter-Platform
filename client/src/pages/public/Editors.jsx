@@ -21,7 +21,7 @@ function Editors() {
         },
       });
       if (result.status === 200) {
-        console.log(result);
+        //console.log(result);
         setIsAuth(true);
       } else {
         nav("/sign-in");

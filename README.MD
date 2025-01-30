@@ -30,6 +30,12 @@ The Dynamic Newsletter is a platform to sreamline college events, It's built usi
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 
+## Environment Variable (Server 📂)
+
+- JWT_TOKEN=xxxxxxxx
+- MONGO_URI=xxxxxxx
+- PORT=xxxx
+- SALT=xxxx
 
 ## Contributing
 

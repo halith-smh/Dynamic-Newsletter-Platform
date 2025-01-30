@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 function Hero() {
   const [date, setdate] = useState("");
 
-  const nav  = useNavigate();
+  const nav = useNavigate();
   const handleDateClick = () => {
     const formatDate = date.split('-').reverse().join('-');
-      nav(`/newsletter/${formatDate}`);
+    nav(`/newsletter/${formatDate}`);
   }
 
   return (
@@ -19,7 +19,7 @@ function Hero() {
           <img width={150} src={logo} alt="" />
           <h1 className="navbar-brand">
             <div className="hero-txt">
-              <span>.I</span>GNITE - 2024
+              <span>.I</span>GNITE - 2025
             </div>
           </h1>
           <p>A DAILY NEWSLETTER</p>
@@ -34,7 +34,7 @@ function Hero() {
               className="form-control"
               aria-label="Amount (to the nearest dollar)"
             />
-            <div className="input-group-append"  onClick={handleDateClick} type="button">
+            <div className="input-group-append" onClick={handleDateClick} type="button">
               <span className="input-group-text">
                 <i className="bi bi-search"></i>
               </span>

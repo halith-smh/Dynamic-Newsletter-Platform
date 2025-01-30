@@ -149,20 +149,22 @@ function Profile() {
                       </h5>
                       <p className="card-text text-capitalize">{data.role}</p>
                     </div>
-                    <div className="my-2">
-                      <button
-                        style={{
-                          background: "#6d23e4",
-                          color: "white",
-                          fontSize: 15,
-                        }}
-                        data-bs-toggle="modal"
-                        data-bs-target="#updateProfile"
-                        className="btn btn-sm px-4 my-2"
-                      >
-                        <i className="bi bi-pencil-fill"></i> Edit
-                      </button>
-                    </div>
+                    {data.role === "student" && (
+                      <div className="my-2">
+                        <button
+                          style={{
+                            background: "#6d23e4",
+                            color: "white",
+                            fontSize: 15,
+                          }}
+                          data-bs-toggle="modal"
+                          data-bs-target="#updateProfile"
+                          className="btn btn-sm px-4 my-2"
+                        >
+                          <i className="bi bi-pencil-fill"></i> Edit
+                        </button>
+                      </div>
+                    )}
                     {/* <!-- Modal --> */}
                     <div
                       className="modal fade"
@@ -244,7 +246,7 @@ function Profile() {
                         <li className="list-group-item">
                           <strong>
                             <i
-                              class="bi bi-envelope-at-fill"
+                              className="bi bi-envelope-at-fill"
                               style={{ color: "#6d23e4" }}
                             ></i>{" "}
                             Email:
@@ -254,7 +256,7 @@ function Profile() {
                         <li className="list-group-item">
                           <strong>
                             <i
-                              class="bi bi-mortarboard-fill"
+                              className="bi bi-mortarboard-fill"
                               style={{ color: "#6d23e4" }}
                             ></i>{" "}
                             Department:
@@ -264,7 +266,7 @@ function Profile() {
                         <li className="list-group-item">
                           {data.role === "admin" || data.role === "editor" ? (
                             <>
-                              
+
                             </>
                           ) : (
                             <>
@@ -288,7 +290,7 @@ function Profile() {
                         <span>
                           {data.liked.length}{" "}
                           <i
-                            class="bi bi-heart-fill"
+                            className="bi bi-heart-fill"
                             style={{ color: "red" }}
                           ></i>
                         </span>
@@ -296,7 +298,7 @@ function Profile() {
                       <hr />
                       <h5 className="card-title">
                         <i
-                          class="bi bi-calendar-event-fill"
+                          className="bi bi-calendar-event-fill"
                           style={{ color: "#6d23e4", fontSize: 18 }}
                         ></i>{" "}
                         Joined on: {formatDate(data.createdAt)}
